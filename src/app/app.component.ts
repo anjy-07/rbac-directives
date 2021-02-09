@@ -9,31 +9,27 @@ import { PermissionOptions } from './model/permissionOptions.interface';
 })
 export class AppComponent {
   title = 'rbac-directives';
-  permissionCard1: PermissionOptions = {
-    allowedAction : true,
-    isReadOnly: false
+  permission: PermissionOptions = {
+    isHidden : false,
+    isReadOnly: false, 
   }
-  permissionCard2: PermissionOptions = {
-    allowedAction : true,
-    isReadOnly: false
-  }
+  
   constructor(private permissionService: PermissionService) {}
 
   disabledView() {
-    this.permissionCard1.isReadOnly = true;
-    this.permissionService.triggerDisableView(this.permissionCard1);
+    this.permission.isReadOnly = true;
+    this.permissionService.triggerDisableView(this.permission);
   }
   enabledView() {
-    this.permissionCard1.isReadOnly = false;
-    this.permissionService.triggerEnableView(this.permissionCard1);
+    this.permission.isReadOnly = false;
+    this.permissionService.triggerEnableView(this.permission);
   }
   showView() {
-    this.permissionCard2.allowedAction = true;
-    this.permissionCard2.isReadOnly = false;
-    this.permissionService.triggerShowView(this.permissionCard2);
+    this.permission.isHidden = false;
+    this.permissionService.triggerShowView(this.permission);
   }
   removeView() {
-    this.permissionCard2.allowedAction = false;
-    this.permissionService.triggerRemoveView(this.permissionCard2);
+    this.permission.isHidden = true;
+    this.permissionService.triggerRemoveView(this.permission);
   }
 }

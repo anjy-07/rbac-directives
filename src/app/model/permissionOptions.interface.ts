@@ -1,4 +1,4 @@
 export interface PermissionOptions {
-    allowedAction: boolean,
+    isHidden: boolean,
     isReadOnly: boolean,
 }

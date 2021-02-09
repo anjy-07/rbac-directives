@@ -21,18 +21,19 @@ export class HasPermissionsDirective {
       console.log(permissionOptions)
       this.decideView(permissionOptions);
     })
+    console.log(value)
     this.decideView(value);
   }
 
   decideView(value: PermissionOptions) {
-    if(value.isReadOnly && value.allowedAction)
-      this.disableComponent();
-    else if(!value.isReadOnly && value.allowedAction)
-      this.enableComponent();
-    else if(value.isReadOnly && value.allowedAction)
-      this.showComponent();
+    if(!value.isReadOnly && !value.isHidden)
+        this.enableComponent();
+    else if(value.isReadOnly && !value.isHidden)
+        this.disableComponent();
+    else if(!value.isReadOnly && value.isHidden)
+        this.removeComponent();
     else
-      this.removeComponent();
+        this.showComponent();
   }
 
   disableComponent(): void {
@@ -40,6 +41,7 @@ export class HasPermissionsDirective {
     const viewRootElement : HTMLElement = this.viewContainerRef.createEmbeddedView(
       this.templateRef
     ).rootNodes[0];
+    viewRootElement.setAttribute('style', 'background-color: grey');
     this.renderer.setProperty(viewRootElement, 'disabled', true);
   }
 
@@ -51,12 +53,12 @@ export class HasPermissionsDirective {
     this.renderer.setProperty(viewRootElement, 'disabled', false);
   }
 
-  removeComponent(): void { 
-    console.log("df");
+  removeComponent(): void {
     this.viewContainerRef.clear();
   }
 
   showComponent(): void {
+    this.viewContainerRef.clear();
     this.viewContainerRef.createEmbeddedView(
       this.templateRef
     ).rootNodes[0];

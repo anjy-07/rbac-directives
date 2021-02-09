@@ -9,15 +9,15 @@
       <div class="card-body">
         <h4 class="card-title">Demonstrates Disable View</h4>
         <p class="card-text">Button is disabled because you don't have permission to click on it.</p>
-        <button *appHasPermissions='{allowedAction: true, isReadOnly: true}' class="btn btn-primary">Click</button>
+        <button *appHasPermissions="permission" class="btn btn-primary">Click</button>
       </div>
     </div>
   </div>
   <div class="col-4">
-    <div class="card"  *appHasPermissions='{allowedAction: true, isReadOnly: true}'  style="width: 18rem;">
+    <div class="card"  *appHasPermissions="permission" style="width: 18rem;">
       <div class="card-body">
-        <h4 class="card-title">Demonstrates ... View</h4>
-        <p class="card-text">Card will be removed from the screen or the DOM Tree</p>
+        <h4 class="card-title">Demonstrates Hidden View</h4>
+        <p class="card-text">Card will be removed from the screen or the DOM tree</p>
         <button class="btn btn-primary">Click</button>
       </div>
     </div>
