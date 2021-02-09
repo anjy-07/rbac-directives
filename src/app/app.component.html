@@ -1,0 +1,50 @@
+<nav class="navbar navbar-dark bg-dark pt-2">
+  <!-- Navbar content -->
+  <h3> Role Based Access Control</h3>
+</nav>
+
+<div class="row mt-4">
+  <div class="col-4 ml-4">
+    <div class="card" style="width: 18rem;" >
+      <div class="card-body">
+        <h4 class="card-title">Demonstrates Disable View</h4>
+        <p class="card-text">Button is disabled because you don't have permission to click on it.</p>
+        <button *appHasPermissions='{allowedAction: true, isReadOnly: true}' class="btn btn-primary">Click</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card"  *appHasPermissions='{allowedAction: true, isReadOnly: true}'  style="width: 18rem;">
+      <div class="card-body">
+        <h4 class="card-title">Demonstrates ... View</h4>
+        <p class="card-text">Card will be removed from the screen or the DOM Tree</p>
+        <button class="btn btn-primary">Click</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row ml-2 mt-4">
+  <div class="col-3">
+    <button  class="btn btn-secondary mt-4" (click)="disabledView()">
+      Switch To Disabled View
+    </button>
+  </div>
+  <div class="col-3">
+    <button  class="btn btn-secondary mt-4" (click)="enabledView()">
+      Switch to Enabled View
+    </button>
+  </div>
+  <div class="col-3">
+    <button  class="btn btn-secondary mt-4" (click)="showView()">
+      Show Card On the Screen
+    </button>
+  </div>
+  <div class="col-3">
+    <button  class="btn btn-secondary mt-4" (click)="removeView()">
+      Remove Card from the Screen
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
